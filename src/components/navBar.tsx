@@ -38,10 +38,16 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
+            <Link to="/brokersearch" className="hover:text-gray-500 transition">
+              Search Brokers
+            </Link>
+          </li>
+          <li>
             <Link to="/broker" className="hover:text-gray-500 transition">
               Brokers
             </Link>
           </li>
+          
         </ul>
 
         <Link

@@ -8,6 +8,8 @@ import About from "./pages/about";
 import Contact from "./pages/contact";
 import Property from "./pages/property";
 import Brokers from "./pages/broker";
+import Brokersearch from "./pages/brokersearch";
+import Login from "./pages/login";
 
 export default function App() {
   return (
@@ -21,6 +23,8 @@ export default function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/property" element={<Property />} />
           <Route path="/broker" element={<Brokers />} />
+          <Route path="/brokersearch" element={<Brokersearch />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </main>
 

@@ -1,46 +1,23 @@
-export default function Property() {
+export default function Brokersearch() {
   return (
     <div className="w-full min-h-screen flex">
       <aside className="w-64 bg-white p-6 border-r border-gray-200">
         <h2 className="text-2xl font-semibold text-gray-800">
-          Property Filters
+          Broker Filters
         </h2>
 
         <div className="mt-6 space-y-4">
           <div>
-            <label className="text-gray-700 font-medium">Type</label>
+            <label className="text-gray-700 font-medium">Types</label>
 
             <section className="mt-4">
             <input type="text" className="border-2 rounded px-2 py-1 w-full" placeholder="Search:" />
             </section>
 
             <select className="mt-1 w-full border border-gray-300 rounded p-2">
-              <option>All</option>
-              <option>House</option>
-              <option>Apartment</option>
-              <option>Commercial</option>
-            </select>
-
-            <select className="mt-1 w-full border border-gray-300 rounded p-2">
               <option>Both</option>
-              <option>Buy</option>
-              <option>Rent</option>
-            </select>
-          </div>
-
-          <div>
-            <label className="text-gray-700 font-medium">Price Range</label>
-            <input type="range" className="w-full" min="500" max="10000" />
-          </div>
-
-          <div>
-            <label className="text-gray-700 font-medium">Bedrooms</label>
-            <select className="mt-1 w-full border border-gray-300 rounded p-2">
-              <option>Any</option>
-              <option>1+</option>
-              <option>2+</option>
-              <option>3+</option>
-              <option>4+</option>
+              <option>Self</option>
+              <option>Real Estate contracted</option>
             </select>
           </div>
         </div>
@@ -49,7 +26,7 @@ export default function Property() {
       <main className="flex-1 p-10">
         <div className="flex items-center justify-between mb-6">
           <span className="text-lg font-medium text-gray-700">
-            124 properties found
+            124 brokers found
           </span>
 
           <button className="text-gray-800 font-medium hover:text-gray-600 transition">
