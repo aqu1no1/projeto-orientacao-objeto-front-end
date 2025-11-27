@@ -2,7 +2,10 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/navBar";
 import Footer from "./components/footer";
 
-// suas páginas (ainda vamos criar)
+
+import { AuthProvider } from "./AuthContext"; 
+import ProtectedRoute from "./ProtectedRoute"; 
+
 import Home from "./pages/home";
 import About from "./pages/about";
 import Contact from "./pages/contact";
@@ -13,22 +16,30 @@ import Login from "./pages/login";
 
 export default function App() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-
-      <main className="flex-1 p-8">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/property" element={<Property />} />
-          <Route path="/broker" element={<Brokers />} />
-          <Route path="/brokersearch" element={<Brokersearch />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
-      </main>
-
-      <Footer />
-    </div>
+    <AuthProvider>
+      <div className="min-h-screen flex flex-col">
+        <Navbar />
+        <main className="flex-1 p-8">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/broker" element={<Brokers />} />
+            <Route path="/brokersearch" element={<Brokersearch />} />
+            <Route path="/login" element={<Login />} />
+            
+            <Route 
+              path="/property" 
+              element={
+                <ProtectedRoute>
+                  <Property />
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </AuthProvider>
   );
 }

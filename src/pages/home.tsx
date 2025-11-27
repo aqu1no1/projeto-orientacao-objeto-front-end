@@ -1,4 +1,4 @@
-import "../tailwind.css";
+
 import casa1 from "../assets/Properties/casa1.jpg";
 import casa2 from "../assets/Properties/casa2.jpg";
 import casa3 from "../assets/Properties/casa3.jpg";
