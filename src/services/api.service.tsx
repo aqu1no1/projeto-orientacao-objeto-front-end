@@ -5,8 +5,6 @@ const apiClient = axios.create({
 	baseURL: import.meta.env.VITE_API_BASE_URL,
 });
 
-console.log("API Base URL:", import.meta.env.VITE_API_BASE_URL);
-
 export const useApi = () => {
 	const { token, isAuthenticated, refreshToken, logout } = useAuth();
 
@@ -15,7 +13,7 @@ export const useApi = () => {
 			return config;
 		}
 
-		config.headers["Authorization"] = token;
+		config.headers["Authorization"] = `Bearer ${token}`;
 
 		return config;
 	});
@@ -36,7 +34,7 @@ export const useApi = () => {
 					headers: {
 						...error.config.headers,
 						retry: true,
-						Authorization: token,
+						Authorization: `Bearer ${token}`,
 					},
 				};
 				const retryResponse = await apiClient(retryConfig);

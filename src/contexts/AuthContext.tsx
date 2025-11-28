@@ -2,13 +2,12 @@ import {
 	createContext,
 	useCallback,
 	useContext,
-	useEffect,
 	useMemo,
 	useState,
 	type ReactNode,
 } from "react";
-import { AuthService } from "../services/auth.service";
 import { useNavigate } from "react-router-dom";
+import { AuthService } from "../services/auth.service";
 
 interface AuthContextType {
 	loading: boolean;
@@ -33,8 +32,6 @@ export function AuthProvider({ children }: Readonly<{ children: ReactNode }>) {
 	const navigate = useNavigate();
 
 	const isAuthenticated = useMemo(() => !!token, [token]);
-
-	useEffect(() => {}, []);
 
 	const login = useCallback(
 		async (email: string, password: string) => {

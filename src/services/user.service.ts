@@ -2,7 +2,7 @@ import type { AxiosInstance, AxiosResponse } from "axios";
 import type { User } from "../models/user.model";
 
 export class UserService {
-	private readonly baseUrl: string = 'auth';
+	private readonly baseUrl: string = 'users';
 	private readonly api: AxiosInstance;
 	
 	constructor(api: AxiosInstance) {

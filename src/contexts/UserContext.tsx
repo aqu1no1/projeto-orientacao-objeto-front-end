@@ -4,11 +4,12 @@ import {
 	useEffect,
 	useMemo,
 	useState,
-	type ReactNode
+	type ReactNode,
 } from "react";
 import type { User } from "../models/user.model";
 import { useApi } from "../services/api.service";
 import { UserService } from "../services/user.service";
+import { useAuth } from "./AuthContext";
 
 interface UserContextType {
 	loading: boolean;
@@ -20,6 +21,8 @@ const UserContext = createContext<UserContextType | undefined>(undefined);
 export function UserProvider({ children }: Readonly<{ children: ReactNode }>) {
 	const api = useApi();
 	const userService = useMemo(() => new UserService(api), []);
+
+	const { isAuthenticated } = useAuth();
 
 	const [loading, setLoading] = useState(true);
 	const [user, setUser] = useState<User | null>(null);
@@ -35,8 +38,10 @@ export function UserProvider({ children }: Readonly<{ children: ReactNode }>) {
 			}
 		};
 
-		fetchUser();
-	}, [userService]);
+		if (isAuthenticated) {
+			fetchUser();
+		}
+	}, [userService, isAuthenticated]);
 
 	const value = useMemo(
 		() => ({
@@ -49,10 +54,10 @@ export function UserProvider({ children }: Readonly<{ children: ReactNode }>) {
 	return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 }
 
-export function useAuth() {
+export function useUser() {
 	const context = useContext(UserContext);
 	if (context === undefined) {
-		throw new Error("useAuth must be used within an UserProvider");
+		throw new Error("useUser must be used within an UserProvider");
 	}
 	return context;
 }
