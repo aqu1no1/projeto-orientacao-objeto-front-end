@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import PrimeImob from "../assets/PrimeImob.png";
+import { useUser } from "../contexts/UserContext";
 
 export default function Navbar() {
+  const { user } = useUser();
+
   return (
     <nav className="w-full bg-white shadow-md">
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
@@ -47,7 +50,14 @@ export default function Navbar() {
               Brokers
             </Link>
           </li>
-          
+
+          {user?.role === "ADMIN" && (
+            <li>
+              <Link to="/admin" className="hover:text-gray-500 transition">
+                Admin
+              </Link>
+            </li>
+          )}
         </ul>
 
         <Link
