@@ -4,7 +4,7 @@ import {
 	useEffect,
 	useMemo,
 	useState,
-	type ReactNode,
+	type ReactNode
 } from "react";
 import type { User } from "../models/user.model";
 import { useApi } from "../services/api.service";
@@ -20,27 +20,34 @@ const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export function UserProvider({ children }: Readonly<{ children: ReactNode }>) {
 	const api = useApi();
-	const userService = useMemo(() => new UserService(api), []);
-
 	const { isAuthenticated } = useAuth();
+	const userService = useMemo(() => new UserService(api), [api]);
 
-	const [loading, setLoading] = useState(true);
+	const [loading, setLoading] = useState(false);
 	const [user, setUser] = useState<User | null>(null);
 
 	useEffect(() => {
 		const fetchUser = async () => {
+			// Só busca o usuário se estiver autenticado
+			if (!isAuthenticated) {
+				setUser(null);
+				setLoading(false);
+				return;
+			}
+
 			setLoading(true);
 			try {
 				const response = await userService.getProfile();
 				setUser(response.data);
+			} catch (error) {
+				console.error("Error fetching user profile:", error);
+				setUser(null);
 			} finally {
 				setLoading(false);
 			}
 		};
 
-		if (isAuthenticated) {
-			fetchUser();
-		}
+		fetchUser();
 	}, [userService, isAuthenticated]);
 
 	const value = useMemo(
