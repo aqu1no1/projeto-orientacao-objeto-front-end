@@ -10,6 +10,7 @@ export interface Property {
   address: Address;
   owner?: User;
   ownerId: string;
+  imageUrl: string;
 }
 
 export interface Address {

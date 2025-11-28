@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { useProperty } from "../contexts/PropertyContext";
 import { useApi } from "../services/api.service";
 import { BookingService } from "../services/booking.service";
-import type { Property } from "../models/property.models";
+import type { Property } from "../models/property.model";
 import type { CreateBookingDto } from "../dtos/create-booking.dto";
 
 export default function PropertyPage() {

@@ -6,13 +6,16 @@ import "./tailwind.css";
 import App from "./App";
 import { AuthProvider } from "./contexts/AuthContext";
 import { UserProvider } from "./contexts/UserContext";
+import { PropertyProvider } from "./contexts/PropertyContext";
 
 createRoot(document.getElementById("root")!).render(
 	<StrictMode>
 		<BrowserRouter>
 			<AuthProvider>
 				<UserProvider>
-					<App />
+					<PropertyProvider>
+						<App />
+					</PropertyProvider>
 				</UserProvider>
 			</AuthProvider>
 		</BrowserRouter>

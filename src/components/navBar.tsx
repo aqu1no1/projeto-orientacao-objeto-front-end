@@ -51,30 +51,6 @@ export default function Navbar() {
 						</li>
 					)}
 				</ul>
-
-				<ul className="hidden md:flex flex-row gap-16 text-gray-700 font-medium">
-					<li>
-						<Link to="/" className="hover:text-gray-500 transition">
-							Home
-						</Link>
-					</li>
-					<li>
-						<Link to="/about" className="hover:text-gray-500 transition">
-							About
-						</Link>
-					</li>
-					<li>
-						<Link to="/contact" className="hover:text-gray-500 transition">
-							Contact
-						</Link>
-					</li>
-					<li>
-						<Link to="/property" className="hover:text-gray-500 transition">
-							Property
-						</Link>
-					</li>
-				</ul>
-
 				{isAuthenticated ? (
 					<button
 						onClick={logout}
