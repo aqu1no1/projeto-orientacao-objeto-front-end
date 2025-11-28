@@ -1,5 +1,6 @@
 import type { AxiosInstance, AxiosResponse } from "axios";
-import type { Booking, CreateBookingDTO } from "../models/booking.model";
+import type { CreateBookingDto } from "../dtos/create-booking.dto";
+import type { Booking } from "../models/booking.model";
 
 export class BookingService {
 	private readonly baseUrl: string = "bookings";
@@ -9,23 +10,28 @@ export class BookingService {
 		this.api = api;
 	}
 
-	public createBooking(dto: CreateBookingDTO): Promise<AxiosResponse<Booking>> {
-		return this.api.post<Booking>(this.baseUrl, dto);
+	public create(
+		createBookingDto: CreateBookingDto
+	): Promise<AxiosResponse<Booking>> {
+		return this.api.post(`${this.baseUrl}`, createBookingDto);
+	}
+
+	public getById(bookingId: string): Promise<AxiosResponse<Booking>> {
+		return this.api.get(`${this.baseUrl}/${bookingId}`);
 	}
 
 	public getAll(): Promise<AxiosResponse<Booking[]>> {
-		return this.api.get<Booking[]>(this.baseUrl);
+		return this.api.get(`${this.baseUrl}`);
 	}
 
-	public getById(id: string): Promise<AxiosResponse<Booking>> {
-		return this.api.get<Booking>(`${this.baseUrl}/${id}`);
+	public delete(bookingId: string): Promise<AxiosResponse<void>> {
+		return this.api.delete(`${this.baseUrl}/${bookingId}`);
 	}
 
-	public updateBooking(id: string, dto: CreateBookingDTO): Promise<AxiosResponse<Booking>> {
-		return this.api.put<Booking>(`${this.baseUrl}/${id}`, dto);
-	}
-
-	public deleteBooking(id: string): Promise<AxiosResponse<void>> {
-		return this.api.delete(`${this.baseUrl}/${id}`);
+	public update(
+		bookingId: string,
+		updateData: CreateBookingDto
+	): Promise<AxiosResponse<Booking>> {
+		return this.api.put(`${this.baseUrl}/${bookingId}`, updateData);
 	}
 }

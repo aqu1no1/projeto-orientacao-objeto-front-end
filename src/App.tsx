@@ -1,19 +1,15 @@
-import { Routes, Route } from "react-router-dom";
-import Navbar from "./components/navBar";
+import { Route, Routes } from "react-router-dom";
 import Footer from "./components/footer";
+import Navbar from "./components/navBar";
 
-import { AuthProvider } from "./contexts/AuthContext";
-import { UserProvider } from "./contexts/UserContext";
-import { PropertyProvider } from "./contexts/PropertyContext";
 import ProtectedRoute from "./ProtectedRoute";
 
-import Home from "./pages/home";
 import About from "./pages/about";
 import Contact from "./pages/contact";
-import Property from "./pages/property";
-import Brokers from "./pages/broker";
-import Brokersearch from "./pages/brokersearch";
+import Home from "./pages/home";
 import Login from "./pages/login";
+import Property from "./pages/property";
+import Admin from "./pages/admin";
 
 export default function App() {
 	return (
@@ -33,28 +29,22 @@ export default function App() {
 							</ProtectedRoute>
 						}
 					/>
-					<Route
-						path="/broker"
-						element={
-							<ProtectedRoute>
-								<Brokers />
-							</ProtectedRoute>
-						}
-					/>
-					<Route
-						path="/brokersearch"
-						element={
-							<ProtectedRoute>
-								<Brokersearch />
-							</ProtectedRoute>
-						}
-					/>
+
 					{/* TODO: Make this route protected to admin */}
 					<Route
 						path="/property"
 						element={
 							<ProtectedRoute>
 								<Property />
+							</ProtectedRoute>
+						}
+					/>
+
+					<Route
+						path="/admin"
+						element={
+							<ProtectedRoute>
+								<Admin />
 							</ProtectedRoute>
 						}
 					/>

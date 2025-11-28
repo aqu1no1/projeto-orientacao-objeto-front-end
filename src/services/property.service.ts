@@ -1,5 +1,6 @@
 import type { AxiosInstance, AxiosResponse } from "axios";
 import type { Property } from "../models/property.model";
+import type { CreatePropertyDto } from "../dtos/create-property.dto";
 
 export class PropertyService {
 	private readonly baseUrl: string = "properties";
@@ -17,11 +18,14 @@ export class PropertyService {
 		return this.api.get<Property>(`${this.baseUrl}/${id}`);
 	}
 
-	public create(property: Partial<Property>): Promise<AxiosResponse<Property>> {
+	public create(property: CreatePropertyDto): Promise<AxiosResponse<Property>> {
 		return this.api.post<Property>(this.baseUrl, property);
 	}
 
-	public update(id: string, property: Partial<Property>): Promise<AxiosResponse<Property>> {
+	public update(
+		id: string,
+		property: Partial<Property>
+	): Promise<AxiosResponse<Property>> {
 		return this.api.put<Property>(`${this.baseUrl}/${id}`, property);
 	}
 

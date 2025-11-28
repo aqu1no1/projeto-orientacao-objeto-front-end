@@ -14,19 +14,16 @@ export default function Footer() {
         </div>
 
         <nav className="flex gap-6 text-sm">
-          <a href="#" className="hover:text-white transition">
+          <a href="/about" className="hover:text-white transition">
             About
           </a>
-          <a href="#" className="hover:text-white transition">
+          <a href="/contact" className="hover:text-white transition">
             Contact
-          </a>
-          <a href="#" className="hover:text-white transition">
-            Terms
           </a>
         </nav>
 
         <span className="text-sm text-gray-400 text-center md:text-right">
-          © 2025 PrimeImob — Todos os direitos reservados
+          © 2025 PrimeImob — All rights reserved.
         </span>
       </div>
     </footer>
