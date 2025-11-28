@@ -12,4 +12,12 @@ export class UserService {
 	public getProfile(): Promise<AxiosResponse<User>> {
 		return this.api.get<User>(`${this.baseUrl}/profile`);
 	}
+
+	public getAll(): Promise<AxiosResponse<User[]>> {
+		return this.api.get<User[]>(this.baseUrl);
+	}
+
+	public getById(id: string): Promise<AxiosResponse<User>> {
+		return this.api.get<User>(`${this.baseUrl}/${id}`);
+	}
 }
