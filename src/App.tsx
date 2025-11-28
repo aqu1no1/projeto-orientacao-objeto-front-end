@@ -9,6 +9,7 @@ import Contact from "./pages/contact";
 import Home from "./pages/home";
 import Login from "./pages/login";
 import Property from "./pages/property";
+import Admin from "./pages/admin";
 
 export default function App() {
 	return (
@@ -28,12 +29,22 @@ export default function App() {
 							</ProtectedRoute>
 						}
 					/>
+
 					{/* TODO: Make this route protected to admin */}
 					<Route
 						path="/property"
 						element={
 							<ProtectedRoute>
 								<Property />
+							</ProtectedRoute>
+						}
+					/>
+
+					<Route
+						path="/admin"
+						element={
+							<ProtectedRoute>
+								<Admin />
 							</ProtectedRoute>
 						}
 					/>
