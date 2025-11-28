@@ -3,6 +3,7 @@ export interface CreateAddressDto {
   number: string;
   city: string;
   state: string;
+  complement: string;
   country: string;
   zipCode: string;
 }

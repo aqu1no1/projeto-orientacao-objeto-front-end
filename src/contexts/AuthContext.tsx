@@ -79,7 +79,7 @@ export function AuthProvider({ children }: Readonly<{ children: ReactNode }>) {
 		setToken(null);
 
 		navigate("/login");
-	}, []);
+	}, [navigate]);
 
 	const value = useMemo(
 		() => ({
@@ -91,12 +91,13 @@ export function AuthProvider({ children }: Readonly<{ children: ReactNode }>) {
 			isAuthenticated,
 			refreshToken,
 		}),
-		[loading, login, register, logout, isAuthenticated]
+		[loading, login, register, logout, token, isAuthenticated, refreshToken]
 	);
 
 	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useAuth() {
 	const context = useContext(AuthContext);
 	if (context === undefined) {

@@ -4,6 +4,7 @@ import { useApi } from "../services/api.service";
 import { BookingService } from "../services/booking.service";
 import type { Property } from "../models/property.model";
 import type { CreateBookingDto } from "../dtos/create-booking.dto";
+import { AxiosError } from "axios";
 
 export default function PropertyPage() {
 	const { properties, loading } = useProperty();
@@ -13,8 +14,8 @@ export default function PropertyPage() {
 	const [selectedProperty, setSelectedProperty] = useState<Property | null>(
 		null
 	);
-	const [searchTerm, setSearchTerm] = useState("");
-	const [priceRange, setPriceRange] = useState(10000);
+	const [searchTerm] = useState("");
+	const [priceRange] = useState(10000);
 	const [showBookingModal, setShowBookingModal] = useState(false);
 
 	const filteredProperties = useMemo(() => {
@@ -38,7 +39,7 @@ export default function PropertyPage() {
 		const token = localStorage.getItem("token");
 		if (!token) {
 			alert("You must be logged in to make a booking!");
-			window.location.href = "/login";
+			globalThis.location.href = "/login";
 			return;
 		}
 		setShowBookingModal(true);
@@ -280,11 +281,13 @@ function BookingModal({
 
 			await bookingService.create(dto);
 			onSuccess();
-		} catch (err: any) {
-			const errorMsg =
-				err.response?.data?.message ||
-				"Failed to create booking. Please try again.";
-			setError(errorMsg);
+		} catch (err) {
+			if (err instanceof AxiosError) {
+				const errorMsg =
+					err.response?.data?.message ||
+					"Failed to create booking. Please try again.";
+					setError(errorMsg);
+			}
 		} finally {
 			setLoading(false);
 		}

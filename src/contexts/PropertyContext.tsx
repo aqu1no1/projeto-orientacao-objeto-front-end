@@ -71,6 +71,7 @@ export function PropertyProvider({
 	);
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useProperty() {
 	const context = useContext(PropertyContext);
 	if (context === undefined) {
