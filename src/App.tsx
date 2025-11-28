@@ -19,12 +19,34 @@ export default function App() {
 			<main className="flex-1 p-8">
 				<Routes>
 					<Route path="/" element={<Home />} />
-					<Route path="/about" element={<About />} />
-					<Route path="/contact" element={<Contact />} />
-					<Route path="/broker" element={<Brokers />} />
-					<Route path="/brokersearch" element={<Brokersearch />} />
 					<Route path="/login" element={<Login />} />
+					<Route path="/about" element={<About />} />
 
+					<Route
+						path="/contact"
+						element={
+							<ProtectedRoute>
+								<Contact />
+							</ProtectedRoute>
+						}
+					/>
+					<Route
+						path="/broker"
+						element={
+							<ProtectedRoute>
+								<Brokers />
+							</ProtectedRoute>
+						}
+					/>
+					<Route
+						path="/brokersearch"
+						element={
+							<ProtectedRoute>
+								<Brokersearch />
+							</ProtectedRoute>
+						}
+					/>
+					{/* TODO: Make this route protected to admin */}
 					<Route
 						path="/property"
 						element={
@@ -33,6 +55,8 @@ export default function App() {
 							</ProtectedRoute>
 						}
 					/>
+
+					<Route path="*" element={<h1>404 - Not Found</h1>} />
 				</Routes>
 			</main>
 			<Footer />
