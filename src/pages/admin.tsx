@@ -7,7 +7,7 @@ import type { CreatePropertyDto } from "../dtos/create-property.dto";
 export default function Admin() {
   const api = useApi();
   const propertyService = useMemo(() => new PropertyService(api), [api]);
-  const { fetchProperties } = useProperty(); // Pegar função de refresh do context
+  const { fetchProperties } = useProperty(); 
 
   const [form, setForm] = useState({
     title: "",
@@ -60,12 +60,10 @@ export default function Admin() {
 
       await propertyService.create(dto);
       
-      // Atualizar lista de propriedades no PropertyContext
       await fetchProperties();
       
       alert("Property registered successfully!");
       
-      // Limpar formulário
       setForm({
         title: "",
         dailyRate: "",
@@ -200,4 +198,4 @@ export default function Admin() {
       </form>
     </div>
   );
-}
+};
