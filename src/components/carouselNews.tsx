@@ -14,13 +14,25 @@ export default function CarouselNews({ itens }: CarouselNewsProps) {
   return (
     <Swiper
       spaceBetween={20}
-      slidesPerView={1}
+      slidesPerView={3}
+      centeredSlides={true}
       loop={true}
       autoplay={{
         delay: 3000,
         disableOnInteraction: false,
       }}
       modules={[Autoplay]}
+      breakpoints={{
+        320: {
+          slidesPerView: 1,
+        },
+        768: {
+          slidesPerView: 2,
+        },
+        1024: {
+          slidesPerView: 3,
+        },
+      }}
     >
       {itens.map((item) => (
         <SwiperSlide key={item.id}>

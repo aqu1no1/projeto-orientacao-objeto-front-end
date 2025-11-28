@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function About() {
   return (
     <section className="w-full bg-gray-50 py-20 px-6">
@@ -72,12 +74,12 @@ export default function About() {
           </div>
 
           <div className="text-center md:text-left">
-            <a
-              href="#properties"
+            <Link
+              to="/property"
               className="inline-block bg-gray-800 text-white px-8 py-3 rounded-xl text-lg font-semibold hover:bg-gray-700 transition"
             >
               Explore Properties
-            </a>
+            </Link>
           </div>
         </div>
       </div>
