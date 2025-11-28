@@ -5,8 +5,6 @@ import Navbar from "./components/navBar";
 import ProtectedRoute from "./ProtectedRoute";
 
 import About from "./pages/about";
-import Brokers from "./pages/broker";
-import Brokersearch from "./pages/brokersearch";
 import Contact from "./pages/contact";
 import Home from "./pages/home";
 import Login from "./pages/login";
@@ -27,22 +25,6 @@ export default function App() {
 						element={
 							<ProtectedRoute>
 								<Contact />
-							</ProtectedRoute>
-						}
-					/>
-					<Route
-						path="/broker"
-						element={
-							<ProtectedRoute>
-								<Brokers />
-							</ProtectedRoute>
-						}
-					/>
-					<Route
-						path="/brokersearch"
-						element={
-							<ProtectedRoute>
-								<Brokersearch />
 							</ProtectedRoute>
 						}
 					/>

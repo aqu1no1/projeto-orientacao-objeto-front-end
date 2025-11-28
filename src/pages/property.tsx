@@ -62,100 +62,11 @@ export default function Property() {
 
 	return (
 		<div className="w-full min-h-screen flex">
-			<aside className="w-64 bg-white p-6 border-r border-gray-200">
-				<h2 className="text-2xl font-semibold text-gray-800">
-					Property Filters
-				</h2>
-
-				<div className="mt-6 space-y-4">
-					<div>
-						<label className="text-gray-700 font-medium">Search</label>
-						<input
-							type="text"
-							placeholder="City, title..."
-							value={searchTerm}
-							onChange={(e) => setSearchTerm(e.target.value)}
-							className="mt-2 border-2 rounded px-2 py-1 w-full"
-						/>
-					</div>
-
-					<div>
-						<label className="text-gray-700 font-medium">Type</label>
-						<select
-							value={propertyType}
-							onChange={(e) => setPropertyType(e.target.value)}
-							className="mt-1 w-full border border-gray-300 rounded p-2"
-						>
-							<option>All</option>
-							<option>House</option>
-							<option>Apartment</option>
-							<option>Commercial</option>
-						</select>
-
-						<select
-							value={transactionType}
-							onChange={(e) => setTransactionType(e.target.value)}
-							className="mt-2 w-full border border-gray-300 rounded p-2"
-						>
-							<option>Both</option>
-							<option>Buy</option>
-							<option>Rent</option>
-						</select>
-					</div>
-
-					<div>
-						<label className="text-gray-700 font-medium">
-							Daily Rate: ${priceRange}
-						</label>
-						<input
-							type="range"
-							className="w-full"
-							min="500"
-							max="10000"
-							value={priceRange}
-							onChange={(e) => setPriceRange(Number(e.target.value))}
-						/>
-					</div>
-
-					<div>
-						<label className="text-gray-700 font-medium">Bedrooms</label>
-						<select
-							value={bedrooms}
-							onChange={(e) => setBedrooms(e.target.value)}
-							className="mt-1 w-full border border-gray-300 rounded p-2"
-						>
-							<option>Any</option>
-							<option>1+</option>
-							<option>2+</option>
-							<option>3+</option>
-							<option>4+</option>
-						</select>
-					</div>
-
-					<button
-						onClick={() => {
-							setSearchTerm("");
-							setPriceRange(10000);
-							setPropertyType("All");
-							setTransactionType("Both");
-							setBedrooms("Any");
-						}}
-						className="w-full bg-gray-200 text-gray-800 py-2 rounded hover:bg-gray-300 transition"
-					>
-						Clear Filters
-					</button>
-				</div>
-			</aside>
-
 			<main className="flex-1 p-10">
 				<div className="flex items-center justify-between mb-6">
 					<span className="text-lg font-medium text-gray-700">
 						{filteredProperties.length} properties found
 					</span>
-
-					<button className="text-gray-800 font-medium hover:text-gray-600 transition">
-						Sort by &gt;
-					</button>
 				</div>
 
 				{loading && (
